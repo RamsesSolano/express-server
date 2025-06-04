@@ -43,7 +43,7 @@ app.post('/login', (req, res) => {
     if (!user) return res.status(401).json({ error: 'Credenciales inválidas' });
   
     const token = generateToken(user);
-    res.json({ token });
+    res.status(200).json({ token });
   });
 
 
