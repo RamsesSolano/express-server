@@ -75,6 +75,20 @@ app.put('/users/:id', authenticateToken, (req, res) => {
   res.json(user);
 });
 
+
+// 🔵 GET - Obtener un usuario por ID
+app.get('/users/:id', authenticateToken, (req, res) => {
+  const id = parseInt(req.params.id); // Extrae el id de la URL
+  const user = users.find(u => u.id === id); // Busca al usuario con ese ID
+
+  if (!user) {
+    return res.status(404).json({ message: 'Usuario no encontrado' });
+  }
+
+  res.json(user); // Devuelve el usuario encontrado
+});
+
+
 // 🔴 DELETE - Eliminar un usuario
 app.delete('/users/:id', authenticateToken, (req, res) => {
   const { id } = req.params;
